@@ -19,6 +19,7 @@ jobs:
         run: |
           cmake -S . -B build/n3ds \
             -DCMAKE_SYSTEM_NAME=Generic \
+            -DDESKTOP_BACKEND=none \
             -DCMAKE_TOOLCHAIN_FILE="/opt/devkitpro/cmake/3DS.cmake" \
             -DCMAKE_BUILD_TYPE=Release
 
