@@ -18,7 +18,7 @@ jobs:
       - name: Configure CMake for 3DS
         run: |
           cmake -S . -B build/n3ds \
-            -DPLATFORM=3ds \
+            -DCMAKE_SYSTEM_NAME=Generic \
             -DCMAKE_TOOLCHAIN_FILE="/opt/devkitpro/cmake/3DS.cmake" \
             -DCMAKE_BUILD_TYPE=Release
 
