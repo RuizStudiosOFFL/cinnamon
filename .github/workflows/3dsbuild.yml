@@ -1,0 +1,28 @@
+name: Build Cinnamon 3DS
+on: [workflow_dispatch, push]
+
+jobs:
+  build-3ds:
+    runs-on: ubuntu-latest
+    container: devkitpro/devkitarm:latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install System Dependencies
+        run: |
+          apt-get update
+          apt-get install -y cmake make
+
+      - name: Configure CMake for 3DS
+        run: cmake -S . -B build/n3ds -DPLATFORM=n3ds -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build Project
+        run: cmake --build build/n3ds
+
+      - name: Upload 3DSX Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cinnamon-3ds-build
+          path: build/n3ds/cinnamon.3dsx
