@@ -16,7 +16,11 @@ jobs:
           apt-get install -y cmake make
 
       - name: Configure CMake for 3DS
-        run: cmake -S . -B build/n3ds -DPLATFORM=n3ds -DCMAKE_BUILD_TYPE=Release
+        run: |
+          cmake -S . -B build/n3ds \
+            -DPLATFORM=n3ds \
+            -DCMAKE_TOOLCHAIN_FILE="/opt/devkitpro/cmake/3DS.cmake" \
+            -DCMAKE_BUILD_TYPE=Release
 
       - name: Build Project
         run: cmake --build build/n3ds
